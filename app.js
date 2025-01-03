@@ -39,7 +39,7 @@ app.use((error, req, res, next) => {
 // MongoDB connection and server start
 mongoose
   .connect(
-    "mongodb+srv://rohan17pawar:PbikytKbJnzzgyjB@cluster0.u3tyj.mongodb.net/mern?retryWrites=true&w=majority&appName=Cluster0"
+
   )
   .then(() => {
     app.listen(5000);
