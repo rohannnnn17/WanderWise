@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const HttpError = require("./models/http-error");
 const placesRoutes = require("./routes/places-routes");
@@ -5,6 +6,8 @@ const usersRoutes = require("./routes/users-routes");
 const mongoose = require("mongoose");
 
 const app = express();
+
+const MONGO_URL = process.env.MONGO_URL;
 
 app.use(express.json()); // Use express.json() to parse JSON bodies
 
@@ -38,9 +41,7 @@ app.use((error, req, res, next) => {
 
 // MongoDB connection and server start
 mongoose
-  .connect(
-
-  )
+  .connect(MONGO_URL)
   .then(() => {
     app.listen(5000);
   })
