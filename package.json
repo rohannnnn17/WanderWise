@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "leaflet": "^1.9.4",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-router-dom": "5.3.4",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "^5.0.1",
-    "react-transition-group": "^4.4.5",
-    "styled-components": "^6.1.13"
+    "react-transition-group": "^4.3.0",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

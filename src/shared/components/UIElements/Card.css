@@ -1,8 +1,14 @@
 .card {
   margin: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  border-radius: 6px;
-  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Softer shadow for a modern effect */
+  border-radius: 8px; /* Slightly larger radius for rounded corners */
+  padding: 1.5rem; /* Increased padding for a more spacious feel */
   overflow: hidden;
-  background: white;
+  background: #e5e5cb; /* Light cream background */
+  color: #3c2a21; /* Dark brown text for better contrast */
+}
+
+.card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover for depth */
+  background: #d5cea3; /* Subtle creamish yellow shade on hover */
 }

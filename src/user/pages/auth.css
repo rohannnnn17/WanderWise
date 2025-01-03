@@ -1,5 +1,5 @@
 .authentication__header {
-  color: white;
+  color: #292929; /* Dark gray for header text */
   text-align: center;
 }
 
@@ -8,6 +8,10 @@
   max-width: 25rem;
   margin: 7rem auto;
   text-align: center;
+  background: #d5cea3; /* Light cream background from palette */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .authentication form {

@@ -1,37 +1,42 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap");
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: #292929; /* Dark gray */
 }
 
 body {
-  margin: 0;
-  background: #4d4d4d;
+  background: #e5e5cb; /* Very light cream background */
+  line-height: 1.6;
 }
 
 .slide-in-left-enter {
   transform: translateX(-100%);
+  opacity: 0;
 }
 
 .slide-in-left-enter-active {
   transform: translateX(0);
   opacity: 1;
-  transition: all 200ms;
+  transition: transform 200ms ease-in, opacity 200ms ease-in;
 }
 
 .slide-in-left-exit {
-  transform: translateX(0%);
+  transform: translateX(0);
   opacity: 1;
 }
 
 .slide-in-left-exit-active {
   transform: translateX(-100%);
   opacity: 0;
-  transition: all 200ms;
+  transition: transform 200ms ease-in, opacity 200ms ease-in;
 }
 
 .center {
@@ -39,4 +44,22 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  background: #d5cea3; /* Light cream */
+}
+
+button {
+  background: #1a120b; /* Dark brown */
+  color: #e5e5cb; /* Very light cream */
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out;
+}
+
+button:hover {
+  background: #3c2a21; /* Darker brown */
+  color: #e5e5cb; /* Very light cream */
 }

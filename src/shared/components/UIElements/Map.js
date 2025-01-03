@@ -1,52 +1,47 @@
 import React, { useRef, useEffect } from "react";
+import L from "leaflet";
 import "./Map.css";
+import "leaflet/dist/leaflet.css";
 
 const Map = (props) => {
   const mapRef = useRef();
-
   const { center, zoom } = props;
 
   useEffect(() => {
-    const maps = new window.ol.Map({
-      target: mapRef.current.id,
-      layers: [
-        new window.ol.layer.Tile({
-          source: new window.ol.source.OSM(),
-        }),
-      ],
-      view: new window.ol.View({
-        center: window.ol.proj.fromLonLat([center.lng, center.lat]),
-        zoom: zoom,
-      }),
+    // Initialize the map
+    const map = L.map(mapRef.current).setView(center, zoom);
+
+    // Add OpenStreetMap tile layer
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    // Create a custom marker icon
+    const customIcon = L.icon({
+      iconUrl: "/market.png",
+      iconSize: [32, 32], // Set the size of the marker image
+      iconAnchor: [16, 32], // Anchor point of the marker (where the marker is placed)
+      popupAnchor: [0, -32], // Position of the popup relative to the marker
     });
 
-    const layer = new window.ol.layer.Vector({
-      source: new window.ol.source.Vector({
-        features: [
-          new window.ol.Feature({
-            geometry: new window.ol.geom.Point(
-              window.ol.proj.fromLonLat([center.lng, center.lat])
-            ),
-          }),
-        ],
-      }),
-      style: new window.ol.style.Style({
-        image: new window.ol.style.Icon({
-          anchor: [0.5, 1],
-          crossOrigin: "anonymous",
-          src: "https://docs.maptiler.com/openlayers/default-marker/marker-icon.png",
-        }),
-      }),
-    });
-    maps.addLayer(layer);
+    // Add a marker with the custom icon
+    const marker = L.marker(center, { icon: customIcon }).addTo(map);
+
+    // Optional: Add a popup to the marker
+    marker.bindPopup("<b>Hello!</b><br>This is your marker.").openPopup();
+
+    // Cleanup the map on component unmount
+    return () => {
+      map.remove();
+    };
   }, [center, zoom]);
 
   return (
     <div
       ref={mapRef}
-      className={`map ${props.className}`}
-      style={props.style}
-      id="map"></div>
+      className="map"
+      style={{ height: "400px", width: "100%" }}></div>
   );
 };
 

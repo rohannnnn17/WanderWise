@@ -11,13 +11,14 @@
   height: 100%;
   text-decoration: none;
   padding: 1rem;
-  color: white;
-  background: #292929;
+  color: #e5e5cb; /* Light cream */
+  background: #1a120b; /* Dark brown */
 }
 
 .user-item a:hover,
 .user-item a:active {
-  background: #ffd900;
+  background: #d5cea3; /* Light beige */
+  color: #1a120b; /* Dark brown */
 }
 
 .user-item__content {
@@ -34,14 +35,14 @@
   font-size: 1.5rem;
   margin: 0 0 0.5rem 0;
   font-weight: normal;
-  color: #ffd900;
+  color: #e5e5cb; /* Light cream */
 }
 
 .user-item:hover h2,
 .user-item:active h2,
 .user-item:hover h3,
 .user-item:active h3 {
-  color: #292929;
+  color: #292929; /* Dark gray */
 }
 
 .user-item__info h3 {

@@ -1,3 +1,4 @@
+/* Main Navigation Menu Button (Hamburger Button) */
 .main-navigation__menu-btn {
   width: 3rem;
   height: 3rem;
@@ -14,32 +15,74 @@
   display: block;
   width: 3rem;
   height: 2.5px;
-  background: white;
+  background: #1a120b; /* Dark brown for button */
 }
 
+/* Navigation Title */
 .main-navigation__title {
-  color: white;
+  color: #1a120b; /* Dark brown */
 }
 
 .main-navigation__title a {
   text-decoration: none;
-  color: white;
+  color: #e5e5cb; /* Dark brown */
 }
 
+/* Mobile Navigation */
 .main-navigation__header-nav {
   display: none;
+  background-color: #e5e5cb; /* Light beige */
+  color: #3c2a21; /* Dark brown */
+  padding: 1rem;
 }
 
+/* Mobile Drawer Navigation */
 .main-navigation__drawer-nav {
   height: 100%;
+  background-color: #e5e5cb; /* Light beige */
+  color: #3c2a21; /* Dark brown */
 }
 
+/* Desktop Layout */
 @media (min-width: 768px) {
+  /* Hide the menu button on larger screens */
   .main-navigation__menu-btn {
     display: none;
   }
 
+  /* Display the navigation bar on larger screens */
   .main-navigation__header-nav {
+    display: block;
+    background-color: #1a120b; /* Dark brown */
+    color: #d5cea3; /* Light beige */
+    padding: 1rem;
+    text-align: center;
+  }
+
+  /* Navigation links within the header */
+  .main-navigation__header-nav a {
+    text-decoration: none;
+    color: #d5cea3; /* Light beige */
+    font-size: 1.1rem;
+    margin: 0 1rem;
+  }
+
+  .main-navigation__header-nav a:hover {
+    color: #3c2a21; /* Dark brown on hover */
+  }
+}
+
+/* Mobile Navigation Toggle (e.g., Open Drawer Menu) */
+@media (max-width: 767px) {
+  .main-navigation__header-nav {
+    display: block;
+    background-color: #e5e5cb; /* Light beige */
+    color: #3c2a21; /* Dark brown */
+    padding: 0;
+  }
+
+  /* Menu drawer - showing when menu is toggled */
+  .main-navigation__header-nav.open {
     display: block;
   }
 }

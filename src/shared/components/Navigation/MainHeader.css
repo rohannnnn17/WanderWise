@@ -1,23 +1,34 @@
 .main-header {
   width: 100%;
-  height: 4rem;
+  height: 5rem;
   display: flex;
   align-items: center;
   position: fixed;
   top: 0;
   left: 0;
-  background: #ff0055;
+  background: #1a120b; /* Dark brown for header */
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.26);
   padding: 0 1rem;
   z-index: 5;
 }
 
+.main-header .logo {
+  color: #d5cea3; /* Light beige for logo */
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 main {
-  margin-top: 5rem;
+  margin-top: 6rem;
 }
 
 @media (min-width: 768px) {
   .main-header {
     justify-content: space-between;
+  }
+
+  .main-header .logo {
+    color: #d5cea3; /* Light beige for logo */
   }
 }

@@ -27,12 +27,13 @@
 .place-item__info h3,
 .place-item__info p {
   margin: 0 0 0.5rem 0;
+  color: #1a120b; /* Dark brown for text */
 }
 
 .place-item__actions {
   padding: 1rem;
   text-align: center;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #e5e5cb; /* Soft beige for border */
 }
 
 .place-item__modal-content {
@@ -46,11 +47,26 @@
 .place-item__actions button,
 .place-item__actions a {
   margin: 0.5rem;
+  background: #d5cea3; /* Soft greenish beige */
+  color: #1a120b; /* Dark brown */
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 200ms ease-in-out;
 }
+
+.place-item__actions button:hover,
+.place-item__actions a:hover {
+  background: #3c2a21; /* Dark reddish brown */
+  color: #e5e5cb; /* Soft beige */
+}
+
 .map-container {
   height: 15rem;
   width: 100%;
 }
+
 @media (min-width: 768px) {
   .place-item__image {
     height: 20rem;

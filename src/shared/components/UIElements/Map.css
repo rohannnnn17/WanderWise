@@ -1,4 +1,11 @@
 .map {
   width: 100%;
   height: 100%;
+  border-radius: 8px; /* Modern rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
+  background-color: #e5e5cb; /* Soft cream background */
+}
+
+.map .leaflet-container {
+  border-radius: 8px; /* Ensure the map container also has rounded corners */
 }

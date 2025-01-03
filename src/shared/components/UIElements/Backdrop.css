@@ -4,6 +4,11 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(
+    26,
+    18,
+    11,
+    0.6
+  ); /* Dark brown with opacity for the backdrop */
   z-index: 10;
 }

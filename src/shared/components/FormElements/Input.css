@@ -11,31 +11,41 @@
 .form-control label {
   font-weight: bold;
   margin-bottom: 0.5rem;
+  color: #1a120b; /* Dark brown for label */
 }
 
 .form-control input,
 .form-control textarea {
   width: 100%;
   font: inherit;
-  border: 1px solid #ccc;
-  background: #f8f8f8;
+  border: 1px solid #ccc; /* Light gray border */
+  background: #ffff1e; /* Light cream background */
   padding: 0.15rem 0.25rem;
+  border-radius: 4px; /* Rounded corners for modern feel */
+  transition: border-color 200ms, background-color 200ms;
 }
 
 .form-control input:focus,
 .form-control textarea:focus {
   outline: none;
-  background: #ebebeb;
-  border-color: #510077;
+  background: #d5cea3; /* Light beige on focus */
+  border-color: #1a120b; /* Dark brown on focus */
 }
 
 .form-control--invalid label,
 .form-control--invalid p {
-  color: red;
+  color: #e5e5cb; /* Light cream for error text */
 }
 
 .form-control--invalid input,
 .form-control--invalid textarea {
-  border-color: red;
-  background: #ffd1d1;
+  border-color: #e5e5cb; /* Light cream for error border */
+  background: #e5e5cb; /* Light cream background for errors */
+}
+
+@media (min-width: 768px) {
+  .form-control input,
+  .form-control textarea {
+    padding: 0.5rem 1rem; /* Add more padding on larger screens */
+  }
 }
