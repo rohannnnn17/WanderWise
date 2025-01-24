@@ -12,17 +12,22 @@ const UserPlaces = () => {
 
   const userId = useParams().userId;
 
+  // Dynamic API base URL
+  const API_BASE_URL = process.env.REACT_APP_API_URL || "https://wanderwise-yy6r.onrender.com";
+
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/places/user/${userId}`
+          `${API_BASE_URL}/api/places/user/${userId}` // Dynamic API URL
         );
         setLoadedPlaces(responseData.places);
-      } catch (err) {}
+      } catch (err) {
+        // Error handled by ErrorModal
+      }
     };
     fetchPlaces();
-  }, [sendRequest, userId]);
+  }, [sendRequest, userId, API_BASE_URL]);
 
   const placeDeletedHandler = (deletedPlaceId) => {
     setLoadedPlaces((prevPlaces) =>
