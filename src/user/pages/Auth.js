@@ -61,10 +61,12 @@ const Auth = () => {
   const authSubmitHandler = async (event) => {
     event.preventDefault();
 
+    const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
     if (isLoginMode) {
       try {
         const responseData = await sendRequest(
-          "http://localhost:5000/api/users/login",
+          `${API_BASE_URL}/api/users/login`,
           "POST",
           JSON.stringify({
             email: formState.inputs.email.value,
@@ -79,7 +81,7 @@ const Auth = () => {
     } else {
       try {
         const responseData = await sendRequest(
-          "http://localhost:5000/api/users/signup",
+          `${API_BASE_URL}/api/users/signup`,
           "POST",
           JSON.stringify({
             name: formState.inputs.name.value,
@@ -130,7 +132,7 @@ const Auth = () => {
             type="password"
             label="Password"
             validators={[VALIDATOR_MINLENGTH(6)]}
-            errorText="Please enter a valid password, at least 5 characters."
+            errorText="Please enter a valid password, at least 6 characters."
             onInput={inputHandler}
           />
           <Button type="submit" disabled={!formState.isValid}>
