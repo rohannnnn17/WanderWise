@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import Input from "../../shared/components/FormElements/Input";
@@ -13,10 +13,12 @@ import { useForm } from "../../shared/hooks/form-hook";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import { AuthContext } from "../../shared/context/auth-context";
 import "./PlaceForm.css";
+import ImageUpload from "../../shared/components/FormElements/ImageUpload";
 
 const NewPlace = () => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const [placeType, setPlaceType] = useState(""); // State for place type
   const [formState, inputHandler] = useForm(
     {
       title: {
@@ -31,6 +33,10 @@ const NewPlace = () => {
         value: "",
         isValid: false,
       },
+      image: {
+        value: null,
+        isValid: false,
+      },
     },
     false
   );
@@ -40,19 +46,21 @@ const NewPlace = () => {
   const placeSubmitHandler = async (event) => {
     event.preventDefault();
     try {
-      await sendRequest(
-        `${process.env.REACT_APP_API_URL}/api/places`, // Dynamic base URL
-        "POST",
-        JSON.stringify({
-          title: formState.inputs.title.value,
-          description: formState.inputs.description.value,
-          address: formState.inputs.address.value,
-          creator: auth.userId,
-        }),
-        { "Content-Type": "application/json" }
-      );
+      const formData = new FormData();
+      formData.append("title", formState.inputs.title.value);
+      formData.append("description", formState.inputs.description.value);
+      formData.append("address", formState.inputs.address.value);
+      formData.append("placeType", placeType); // Append placeType to formData
+      formData.append("creator", auth.userId);
+      formData.append("image", formState.inputs.image.value);
+
+      await sendRequest("http://localhost:5000/api/places", "POST", formData);
       history.push("/");
     } catch (err) {}
+  };
+
+  const placeTypeChangeHandler = (event) => {
+    setPlaceType(event.target.value); // Update placeType state on selection
   };
 
   return (
@@ -85,7 +93,34 @@ const NewPlace = () => {
           errorText="Please enter a valid address."
           onInput={inputHandler}
         />
-        <Button type="submit" disabled={!formState.isValid}>
+        <ImageUpload
+          id="image"
+          onInput={inputHandler}
+          errorText="Please provide an image"
+        />
+
+        {/* Dropdown for selecting place type */}
+        <div className="form-control">
+          <label htmlFor="placeType">Place Type</label>
+          <select
+            id="placeType"
+            value={placeType}
+            onChange={placeTypeChangeHandler}
+            required>
+            <option value="">Select Place Type</option>
+            <option value="Nature Spot">Nature Spot</option>
+            <option value="Camping Spot">Camping Spot</option>
+            <option value="Hotel">Hotel</option>
+            <option value="Hostel">Hostel</option>
+            <option value="PG">PG</option>
+            <option value="Mall">Mall</option>
+            <option value="Historic Place">Historic Place</option>
+            <option value="Monument">Monument</option>
+            <option value="Trekking Spot">Trekking Spot</option>
+          </select>
+        </div>
+
+        <Button type="submit" disabled={!formState.isValid || !placeType}>
           ADD PLACE
         </Button>
       </form>

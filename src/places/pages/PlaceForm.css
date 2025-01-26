@@ -1,45 +1,175 @@
+/* General Form Styles */
 .place-form {
-  list-style: none;
+  max-width: 600px;
   margin: 0 auto;
-  padding: 1rem;
-  width: 90%;
-  max-width: 40rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  border-radius: 6px;
-  background: #ffffff; /* White background */
-  border: 1px solid #e5e5cb; /* Light beige border */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.place-form .form-control {
+  margin-bottom: 20px;
+}
+
+.place-form label {
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
 }
 
 .place-form input,
-.place-form textarea {
+.place-form textarea,
+.place-form select {
   width: 100%;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-  border-radius: 4px;
-  border: 1px solid #e5e5cb; /* Soft beige border for inputs */
-  background-color: #f9f9f9; /* Very light gray background for inputs */
-  color: #1a120b; /* Dark brown text color */
-  font-family: inherit;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .place-form input:focus,
-.place-form textarea:focus {
+.place-form textarea:focus,
+.place-form select:focus {
   outline: none;
-  border-color: #3c2a21; /* Dark reddish brown on focus */
-  background-color: #d5cea3; /* Soft greenish beige background on focus */
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
-.place-form button {
-  background: #3c2a21; /* Dark reddish brown */
-  color: #e5e5cb; /* Soft beige text color */
+.place-form input[type="text"],
+.place-form input[type="email"],
+.place-form input[type="password"] {
+  background-color: #f7f7f7;
+}
+
+.place-form textarea {
+  min-height: 120px;
+}
+
+.place-form select {
+  background-color: #f7f7f7;
+}
+
+.place-form select option {
+  padding: 8px;
+  background-color: #fff;
+}
+
+.place-form .form-control button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #4caf50;
   border: none;
-  padding: 0.5rem 1rem;
+  border-radius: 6px;
   cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 200ms ease-in-out;
+  transition: background-color 0.3s ease;
 }
 
-.place-form button:hover {
-  background: #d5cea3; /* Soft greenish beige on hover */
-  color: #1a120b; /* Dark brown text color on hover */
+.place-form .form-control button:hover {
+  background-color: #45a049;
+}
+
+.place-form .form-control button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.place-form .error-text {
+  color: #f44336;
+  font-size: 14px;
+}
+
+.place-form .place-type-select {
+  font-size: 14px;
+  padding: 12px;
+}
+
+.place-form .place-type-label {
+  margin-bottom: 8px;
+  display: block;
+  font-weight: bold;
+}
+
+/* Mobile-First Styles (for smaller devices) */
+@media (max-width: 768px) {
+  .place-form {
+    padding: 15px;
+    width: 100%;
+    box-shadow: none;
+    border-radius: 4px;
+  }
+
+  .place-form input,
+  .place-form textarea,
+  .place-form select {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .place-form .form-control button {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .place-form label {
+    font-size: 14px;
+  }
+
+  .place-form .form-control {
+    margin-bottom: 15px;
+  }
+}
+
+/* Tablet and Small Desktop (from 768px and above) */
+@media (min-width: 768px) {
+  .place-form {
+    padding: 25px;
+  }
+
+  .place-form input,
+  .place-form textarea,
+  .place-form select {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .place-form .form-control button {
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  .place-form label {
+    font-size: 16px;
+  }
+}
+
+/* Large Desktop (from 1024px and above) */
+@media (min-width: 1024px) {
+  .place-form {
+    max-width: 800px;
+    padding: 30px;
+  }
+
+  .place-form input,
+  .place-form textarea,
+  .place-form select {
+    font-size: 18px;
+    padding: 14px;
+  }
+
+  .place-form .form-control button {
+    padding: 16px;
+    font-size: 18px;
+  }
+
+  .place-form label {
+    font-size: 18px;
+  }
 }

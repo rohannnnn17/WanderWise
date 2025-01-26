@@ -1,15 +1,14 @@
 .button {
   font: inherit;
   padding: 0.5rem 1.5rem;
-  border: 1px solid #1a120b; /* Dark brown */
+  border: 1px solid #ff0055;
   border-radius: 4px;
-  background: #1a120b; /* Dark brown */
-  color: #d5cea3; /* Light beige */
+  background: #ff0055;
+  color: white;
   cursor: pointer;
   margin-right: 1rem;
   text-decoration: none;
   display: inline-block;
-  transition: background-color 200ms, border-color 200ms;
 }
 
 .button:focus {
@@ -18,38 +17,38 @@
 
 .button:hover,
 .button:active {
-  background: #3c2a21; /* Dark reddish brown */
-  border-color: #3c2a21; /* Dark reddish brown */
+  background: #ff4382;
+  border-color: #ff4382;
 }
 
 .button--inverse {
   background: transparent;
-  color: #1a120b; /* Dark brown */
+  color: #ff0055;
 }
 
 .button--inverse:hover,
 .button--inverse:active {
-  color: #d5cea3; /* Light beige */
-  background: #1a120b; /* Dark brown */
+  color: white;
+  background: #ff0055;
 }
 
 .button--danger {
-  background: #e5e5cb; /* Light cream */
-  border-color: #e5e5cb; /* Light cream */
+  background: #830000;
+  border-color: #830000;
 }
 
 .button--danger:hover,
 .button--danger:active {
-  background: #d5cea3; /* Light beige */
-  border-color: #d5cea3; /* Light beige */
+  background: #f34343;
+  border-color: #f34343;
 }
 
 .button:disabled,
 .button:hover:disabled,
 .button:active:disabled {
-  background: #ccc; /* Light gray */
-  color: #979797; /* Muted gray */
-  border-color: #ccc; /* Light gray */
+  background: #ccc;
+  color: #979797;
+  border-color: #ccc;
   cursor: not-allowed;
 }
 

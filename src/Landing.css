@@ -1,0 +1,143 @@
+/* Landing Page Container */
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+  min-height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    #d1e7fd,
+    #c3d9f1
+  ); /* Gradient background */
+}
+
+/* Header Section */
+.landing-page header h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #1e3a8a; /* Deep blue color */
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.landing-page header h1:hover {
+  transform: translateY(-5px); /* Hover effect for header */
+}
+
+.landing-page header p {
+  font-size: 1.25rem;
+  color: #4a5568; /* Subtle dark gray for text */
+  margin-bottom: 30px;
+}
+
+.landing-page header .btn-start {
+  background-color: #3182ce; /* Blue background for the button */
+  color: #fff;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.landing-page header .btn-start:hover {
+  background-color: #2b6cb0; /* Darker blue when hovered */
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Features Section */
+.landing-page .features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 0;
+  justify-items: center; /* Center items horizontally */
+}
+
+.landing-page .features .card {
+  width: 100%; /* Make sure each card takes full width of the column */
+  height: 100%; /* Ensures cards take full height of the grid */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Card Styles */
+.landing-page .card {
+  border-radius: 15px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  padding: 25px;
+  text-align: center;
+}
+
+.landing-page .card:hover {
+  transform: translateY(-10px); /* Card lift on hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+.landing-page .card .icon {
+  font-size: 3.5rem;
+  color: #3182ce; /* Icon color */
+  margin-bottom: 15px;
+}
+
+.landing-page .card h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2b6cb0; /* Title color */
+  margin-bottom: 10px;
+}
+
+.landing-page .card .description {
+  font-size: 1rem;
+  color: #4a5568; /* Description color */
+}
+
+/* Hover Effect for Links */
+.landing-page .link-card {
+  text-decoration: none; /* Remove default underline */
+}
+
+.landing-page .link-card:hover .card {
+  transform: translateY(-5px); /* Slight lift effect for clickable cards */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12); /* Subtle shadow effect */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .landing-page header h1 {
+    font-size: 2.5rem;
+  }
+
+  .landing-page header p {
+    font-size: 1rem;
+  }
+
+  .landing-page .features {
+    grid-template-columns: 1fr 1fr; /* 2 columns for medium screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-page header h1 {
+    font-size: 2rem;
+  }
+
+  .landing-page header p {
+    font-size: 0.875rem;
+  }
+
+  .landing-page .features {
+    grid-template-columns: 1fr; /* 1 column for small screens */
+  }
+}

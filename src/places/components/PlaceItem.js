@@ -32,7 +32,7 @@ const PlaceItem = (props) => {
     setShowConfirmModal(false);
     try {
       await sendRequest(
-        `${process.env.REACT_APP_API_URL}/api/places/${props.id}`, // Dynamic base URL
+        `http://localhost:5000/api/places/${props.id}`,
         "DELETE"
       );
       props.onDelete(props.id);
@@ -40,6 +40,12 @@ const PlaceItem = (props) => {
       console.error("Failed to delete place:", err);
     }
   };
+
+  // Ensure coordinates are valid before rendering the map
+  const isValidCoordinates =
+    props.coordinates &&
+    typeof props.coordinates.lat === "number" &&
+    typeof props.coordinates.lng === "number";
 
   return (
     <React.Fragment>
@@ -52,7 +58,11 @@ const PlaceItem = (props) => {
         footerClass="place-item__modal-actions"
         footer={<Button onClick={closeMapHandler}>CLOSE</Button>}>
         <div className="map-container">
-          <Map center={props.coordinates} zoom={16} />
+          {isValidCoordinates ? (
+            <Map center={props.coordinates} zoom={16} />
+          ) : (
+            <p>No valid coordinates available to display the map.</p>
+          )}
         </div>
       </Modal>
       <Modal
@@ -80,7 +90,7 @@ const PlaceItem = (props) => {
           {isLoading && <LoadingSpinner asOverlay />}
           <div className="place-item__image">
             <img
-              src={props.image}
+              src={`http://localhost:5000/${props.image}`}
               alt={props.title}
               aria-label={`Image of ${props.title}`}
             />

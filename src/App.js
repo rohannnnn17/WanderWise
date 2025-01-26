@@ -13,6 +13,8 @@ import UpdatePlace from "./places/pages/UpdatePlace";
 import Auth from "./user/pages/Auth";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import { AuthContext } from "./shared/context/auth-context";
+import LandingPage from "./LandingPage";
+import DiscoverPlaces from "./user/pages/Discover";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -34,7 +36,10 @@ const App = () => {
     routes = (
       <Switch>
         <Route path="/" exact>
-          <Users />
+          <LandingPage />
+        </Route>
+        <Route path="/discover">
+          <DiscoverPlaces></DiscoverPlaces>
         </Route>
         <Route path="/:userId/places" exact>
           <UserPlaces />

@@ -1,0 +1,31 @@
+.advanced-search-form {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.advanced-search-form .MuiTextField-root,
+.advanced-search-form .MuiSelect-root {
+  margin-bottom: 20px;
+}
+
+.MuiSlider-root {
+  margin-top: 10px;
+}
+
+.MuiButton-root {
+  font-weight: bold;
+}
+
+.advanced-search-form .MuiFormControl-root {
+  margin-bottom: 20px;
+}
+
+.MuiSelect-root {
+  font-size: 16px;
+}
+
+.MuiSelect-root,
+.MuiTextField-root {
+  font-size: 14px;
+}

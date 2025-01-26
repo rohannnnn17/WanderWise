@@ -4,7 +4,7 @@
   top: 22vh;
   left: 10%;
   width: 80%;
-  background: #ffffff; /* White background for the modal */
+  background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 8px;
 }
@@ -12,8 +12,8 @@
 .modal__header {
   width: 100%;
   padding: 1rem 0.5rem;
-  background: #1a120b; /* Dark brown for the header */
-  color: #e5e5cb; /* Light cream for text */
+  background: #2a006e;
+  color: white;
 }
 
 .modal__header h2 {
@@ -22,13 +22,10 @@
 
 .modal__content {
   padding: 1rem 0.5rem;
-  background-color: #d5cea3; /* Light beige for the content */
-  color: #292929; /* Dark gray for text */
 }
 
 .modal__footer {
   padding: 1rem 0.5rem;
-  background-color: #e5e5cb; /* Light cream for footer */
 }
 
 @media (min-width: 768px) {

@@ -6,29 +6,18 @@
   position: fixed;
   top: 0;
   left: 0;
-  background: #1a120b; /* Dark brown for header */
+  background: #ff0055;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.26);
   padding: 0 1rem;
   z-index: 5;
 }
 
-.main-header .logo {
-  color: #d5cea3; /* Light beige for logo */
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
 main {
-  margin-top: 6rem;
+  margin-top: 5rem;
 }
 
 @media (min-width: 768px) {
   .main-header {
     justify-content: space-between;
-  }
-
-  .main-header .logo {
-    color: #d5cea3; /* Light beige for logo */
   }
 }

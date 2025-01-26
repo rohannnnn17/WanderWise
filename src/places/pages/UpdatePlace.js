@@ -21,9 +21,6 @@ const UpdatePlace = () => {
   const placeId = useParams().placeId;
   const history = useHistory();
 
-  // Dynamic API base URL
-  const API_BASE_URL = process.env.REACT_APP_API_URL || "https://wanderwise-yy6r.onrender.com";
-
   const [formState, inputHandler, setFormData] = useForm(
     {
       title: {
@@ -42,7 +39,7 @@ const UpdatePlace = () => {
     const fetchPlace = async () => {
       try {
         const responseData = await sendRequest(
-          `${API_BASE_URL}/api/places/${placeId}` // Dynamic API URL
+          `http://localhost:5000/api/places/${placeId}`
         );
         if (!responseData.place) {
           throw new Error("Place not found.");
@@ -64,13 +61,13 @@ const UpdatePlace = () => {
       } catch (err) {}
     };
     fetchPlace();
-  }, [sendRequest, placeId, setFormData, API_BASE_URL]);
+  }, [sendRequest, placeId, setFormData]);
 
   const placeUpdateSubmitHandler = async (event) => {
     event.preventDefault();
     try {
       await sendRequest(
-        `${API_BASE_URL}/api/places/${placeId}`, // Dynamic API URL
+        `http://localhost:5000/api/places/${placeId}`,
         "PATCH",
         JSON.stringify({
           title: formState.inputs.title.value,
@@ -136,4 +133,3 @@ const UpdatePlace = () => {
 };
 
 export default UpdatePlace;
-
