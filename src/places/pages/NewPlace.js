@@ -43,6 +43,12 @@ const NewPlace = () => {
 
   const history = useHistory();
 
+  // Dynamically set the API base URL
+  const API_BASE_URL =
+    window.location.hostname === "localhost"
+      ? "http://localhost:5000" // Local API URL (for development)
+      : "https://wanderwise-yy6r.onrender.com"; // Production API URL
+
   const placeSubmitHandler = async (event) => {
     event.preventDefault();
     try {
@@ -54,7 +60,7 @@ const NewPlace = () => {
       formData.append("creator", auth.userId);
       formData.append("image", formState.inputs.image.value);
 
-      await sendRequest("http://localhost:5000/api/places", "POST", formData);
+      await sendRequest(`${API_BASE_URL}/api/places`, "POST", formData); // Use dynamic API base URL
       history.push("/");
     } catch (err) {}
   };
