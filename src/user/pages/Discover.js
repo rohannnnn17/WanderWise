@@ -12,14 +12,18 @@ const DiscoverPlaces = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // Dynamically set the API base URL
+  const API_BASE_URL =
+    window.location.hostname === "localhost"
+      ? "http://localhost:5000" // Local API URL (for development)
+      : "https://wanderwise-yy6r.onrender.com"; // Production API URL
+
   // Fetch all places when the component is mounted
   useEffect(() => {
     const fetchPlaces = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(
-          "http://localhost:5000/api/allplaces/places"
-        );
+        const response = await axios.get(`${API_BASE_URL}/api/allplaces/places`);
         setPlaces(response.data.places || response.data);
         setFilteredPlaces(response.data.places || response.data);
       } catch (err) {
@@ -38,7 +42,7 @@ const DiscoverPlaces = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/places/search",
+        `${API_BASE_URL}/api/places/search`, // Use dynamic API base URL
         filterData
       ); // Call the new search endpoint
       setFilteredPlaces(response.data.places); // Update the state with the filtered places
