@@ -1,10 +1,5 @@
 import React, { useState, useCallback } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 
 import Users from "./user/pages/Users";
 import NewPlace from "./places/pages/NewPlace";
@@ -30,6 +25,11 @@ const App = () => {
     setUserId(null);
   }, []);
 
+  // Dynamically set the API base URL
+  const API_BASE_URL = window.location.hostname === 'localhost'
+    ? 'http://localhost:5000'  // Local API URL (for development)
+    : 'https://wanderwise-yy6r.onrender.com';  // Production API URL
+
   let routes;
 
   if (isLoggedIn) {
@@ -39,16 +39,16 @@ const App = () => {
           <LandingPage />
         </Route>
         <Route path="/discover">
-          <DiscoverPlaces></DiscoverPlaces>
+          <DiscoverPlaces apiBaseUrl={API_BASE_URL} />
         </Route>
         <Route path="/:userId/places" exact>
-          <UserPlaces />
+          <UserPlaces apiBaseUrl={API_BASE_URL} />
         </Route>
         <Route path="/places/new" exact>
-          <NewPlace />
+          <NewPlace apiBaseUrl={API_BASE_URL} />
         </Route>
         <Route path="/places/:placeId">
-          <UpdatePlace />
+          <UpdatePlace apiBaseUrl={API_BASE_URL} />
         </Route>
         <Redirect to="/" />
       </Switch>
@@ -60,7 +60,7 @@ const App = () => {
           <Users />
         </Route>
         <Route path="/:userId/places" exact>
-          <UserPlaces />
+          <UserPlaces apiBaseUrl={API_BASE_URL} />
         </Route>
         <Route path="/auth">
           <Auth />
@@ -85,4 +85,5 @@ const App = () => {
     </AuthContext.Provider>
   );
 };
+
 export default App;
