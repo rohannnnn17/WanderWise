@@ -35,11 +35,17 @@ const UpdatePlace = () => {
     false
   );
 
+  // Dynamically set the API base URL
+  const API_BASE_URL =
+    window.location.hostname === "localhost"
+      ? "http://localhost:5000" // Local API URL (for development)
+      : "https://wanderwise-yy6r.onrender.com"; // Production API URL
+
   useEffect(() => {
     const fetchPlace = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/places/${placeId}`
+          `${API_BASE_URL}/api/places/${placeId}` // Use dynamic API base URL
         );
         if (!responseData.place) {
           throw new Error("Place not found.");
@@ -61,13 +67,13 @@ const UpdatePlace = () => {
       } catch (err) {}
     };
     fetchPlace();
-  }, [sendRequest, placeId, setFormData]);
+  }, [sendRequest, placeId, setFormData, API_BASE_URL]);
 
   const placeUpdateSubmitHandler = async (event) => {
     event.preventDefault();
     try {
       await sendRequest(
-        `http://localhost:5000/api/places/${placeId}`,
+        `${API_BASE_URL}/api/places/${placeId}`, // Use dynamic API base URL
         "PATCH",
         JSON.stringify({
           title: formState.inputs.title.value,
