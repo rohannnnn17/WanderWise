@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-
 import Card from "../../shared/components/UIElements/Card";
 import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/FormElements/Button";
@@ -64,13 +63,19 @@ const Auth = () => {
     setIsLoginMode((prevMode) => !prevMode);
   };
 
+  // Dynamically set the API base URL
+  const API_BASE_URL =
+    window.location.hostname === "localhost"
+      ? "http://localhost:5000" // Local API URL (for development)
+      : "https://wanderwise-yy6r.onrender.com"; // Production API URL
+
   const authSubmitHandler = async (event) => {
     event.preventDefault();
 
     if (isLoginMode) {
       try {
         const responseData = await sendRequest(
-          "http://localhost:5000/api/users/login",
+          `${API_BASE_URL}/api/users/login`, // Use dynamic API base URL
           "POST",
           JSON.stringify({
             email: formState.inputs.email.value,
@@ -90,7 +95,7 @@ const Auth = () => {
         formData.append("password", formState.inputs.password.value);
         formData.append("image", formState.inputs.image.value);
         const responseData = await sendRequest(
-          "http://localhost:5000/api/users/signup",
+          `${API_BASE_URL}/api/users/signup`, // Use dynamic API base URL
           "POST",
           formData
         );
