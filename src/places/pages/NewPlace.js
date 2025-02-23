@@ -113,7 +113,6 @@ const NewPlace = () => {
             value={placeType}
             onChange={placeTypeChangeHandler}
             required>
-            <option value="">Select Place Type</option>
             <option value="Nature Spot">Nature Spot</option>
             <option value="Camping Spot">Camping Spot</option>
             <option value="Hotel">Hotel</option>
@@ -123,6 +122,38 @@ const NewPlace = () => {
             <option value="Historic Place">Historic Place</option>
             <option value="Monument">Monument</option>
             <option value="Trekking Spot">Trekking Spot</option>
+            <option value="Beach">Beach</option>
+            <option value="Resort">Resort</option>
+            <option value="Waterfall">Waterfall</option>
+            <option value="Temple">Temple</option>
+            <option value="Mosque">Mosque</option>
+            <option value="Church">Church</option>
+            <option value="Gurudwara">Gurudwara</option>
+            <option value="Wildlife Sanctuary">Wildlife Sanctuary</option>
+            <option value="Zoo">Zoo</option>
+            <option value="Museum">Museum</option>
+            <option value="Amusement Park">Amusement Park</option>
+            <option value="Aquarium">Aquarium</option>
+            <option value="Restaurant">Restaurant</option>
+            <option value="Cafe">Cafe</option>
+            <option value="Bar">Bar</option>
+            <option value="Nightclub">Nightclub</option>
+            <option value="Library">Library</option>
+            <option value="Park">Park</option>
+            <option value="Garden">Garden</option>
+            <option value="Shopping Complex">Shopping Complex</option>
+            <option value="Cultural Center">Cultural Center</option>
+            <option value="Art Gallery">Art Gallery</option>
+            <option value="Cinema Hall">Cinema Hall</option>
+            <option value="Sports Complex">Sports Complex</option>
+            <option value="Stadium">Stadium</option>
+            <option value="Convention Center">Convention Center</option>
+            <option value="Food Court">Food Court</option>
+            <option value="Street Market">Street Market</option>
+            <option value="Railway Station">Railway Station</option>
+            <option value="Airport">Airport</option>
+            <option value="Bus Stand">Bus Stand</option>
+            <option value="Ferry Terminal">Ferry Terminal</option>
           </select>
         </div>
 
