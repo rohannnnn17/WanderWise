@@ -19,54 +19,48 @@ const NewPlace = () => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [placeType, setPlaceType] = useState(""); // State for place type
+  const [placeTypeError, setPlaceTypeError] = useState(false); // State for validation error
   const [formState, inputHandler] = useForm(
     {
-      title: {
-        value: "",
-        isValid: false,
-      },
-      description: {
-        value: "",
-        isValid: false,
-      },
-      address: {
-        value: "",
-        isValid: false,
-      },
-      image: {
-        value: null,
-        isValid: false,
-      },
+      title: { value: "", isValid: false },
+      description: { value: "", isValid: false },
+      address: { value: "", isValid: false },
+      image: { value: null, isValid: false },
     },
     false
   );
 
   const history = useHistory();
 
-  // Dynamically set the API base URL
   const API_BASE_URL =
     window.location.hostname === "localhost"
-      ? "http://localhost:5000" // Local API URL (for development)
-      : "https://wanderwise-yy6r.onrender.com"; // Production API URL
+      ? "http://localhost:5000"
+      : "https://wanderwise-yy6r.onrender.com";
 
   const placeSubmitHandler = async (event) => {
     event.preventDefault();
+    if (!placeType) {
+      setPlaceTypeError(true);
+      return;
+    }
+
     try {
       const formData = new FormData();
       formData.append("title", formState.inputs.title.value);
       formData.append("description", formState.inputs.description.value);
       formData.append("address", formState.inputs.address.value);
-      formData.append("placeType", placeType); // Append placeType to formData
+      formData.append("placeType", placeType);
       formData.append("creator", auth.userId);
       formData.append("image", formState.inputs.image.value);
 
-      await sendRequest(`${API_BASE_URL}/api/places`, "POST", formData); // Use dynamic API base URL
+      await sendRequest(`${API_BASE_URL}/api/places`, "POST", formData);
       history.push("/");
     } catch (err) {}
   };
 
   const placeTypeChangeHandler = (event) => {
-    setPlaceType(event.target.value); // Update placeType state on selection
+    setPlaceType(event.target.value);
+    setPlaceTypeError(false);
   };
 
   return (
@@ -86,9 +80,9 @@ const NewPlace = () => {
         <Input
           id="description"
           element="textarea"
-          label="Description"
+          label="Review"
           validators={[VALIDATOR_MINLENGTH(5)]}
-          errorText="Please enter a valid description (at least 5 characters)."
+          errorText="Please enter a valid Review (at least 5 characters)."
           onInput={inputHandler}
         />
         <Input
@@ -113,6 +107,7 @@ const NewPlace = () => {
             value={placeType}
             onChange={placeTypeChangeHandler}
             required>
+            <option value="">-- Select a Place Type --</option>
             <option value="Nature Spot">Nature Spot</option>
             <option value="Camping Spot">Camping Spot</option>
             <option value="Hotel">Hotel</option>
@@ -155,6 +150,9 @@ const NewPlace = () => {
             <option value="Bus Stand">Bus Stand</option>
             <option value="Ferry Terminal">Ferry Terminal</option>
           </select>
+          {placeTypeError && (
+            <p className="error-text">Please select a place type.</p>
+          )}
         </div>
 
         <Button type="submit" disabled={!formState.isValid || !placeType}>

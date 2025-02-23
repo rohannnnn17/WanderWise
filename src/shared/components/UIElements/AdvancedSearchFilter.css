@@ -1,31 +1,40 @@
 .advanced-search-form {
   width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 900px;
+  margin: 40px auto; /* Added margin from top to separate from navbar */
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
 }
 
-.advanced-search-form .MuiTextField-root,
-.advanced-search-form .MuiSelect-root {
-  margin-bottom: 20px;
+.search-input,
+.category-select {
+  border-radius: 8px;
 }
 
-.MuiSlider-root {
-  margin-top: 10px;
+.search-button {
+  font-weight: 600;
+  border-radius: 8px;
+  background-color: #1976d2;
+  padding: 10px 0;
+  transition: background-color 0.3s;
 }
 
-.MuiButton-root {
-  font-weight: bold;
+.search-button:hover {
+  background-color: #1565c0;
 }
 
-.advanced-search-form .MuiFormControl-root {
-  margin-bottom: 20px;
+.reset-button {
+  font-weight: 600;
+  border-radius: 8px;
+  border: 2px solid #1976d2;
+  color: #1976d2;
+  padding: 10px 0;
+  transition: all 0.3s;
 }
 
-.MuiSelect-root {
-  font-size: 16px;
-}
-
-.MuiSelect-root,
-.MuiTextField-root {
-  font-size: 14px;
+.reset-button:hover {
+  border-color: #1565c0;
+  color: #1565c0;
 }

@@ -55,11 +55,50 @@ const AdvancedSearchFilter = ({ onSearch }) => {
                 value={categoryFilter}
                 onChange={(e) => setCategoryFilter(e.target.value)}
                 label="Category">
-                <MenuItem value="">All</MenuItem>
-                <MenuItem value="hostel">Hostels</MenuItem>
-                <MenuItem value="nature">Nature Spots</MenuItem>
-                <MenuItem value="mall">Malls</MenuItem>
-                <MenuItem value="hotel">Hotels</MenuItem>
+                <MenuItem value="">-- Select a Place Type --</MenuItem>
+                <MenuItem value="Nature Spot">Nature Spot</MenuItem>
+                <MenuItem value="Camping Spot">Camping Spot</MenuItem>
+                <MenuItem value="Hotel">Hotel</MenuItem>
+                <MenuItem value="Hostel">Hostel</MenuItem>
+                <MenuItem value="PG">PG</MenuItem>
+                <MenuItem value="Mall">Mall</MenuItem>
+                <MenuItem value="Historic Place">Historic Place</MenuItem>
+                <MenuItem value="Monument">Monument</MenuItem>
+                <MenuItem value="Trekking Spot">Trekking Spot</MenuItem>
+                <MenuItem value="Beach">Beach</MenuItem>
+                <MenuItem value="Resort">Resort</MenuItem>
+                <MenuItem value="Waterfall">Waterfall</MenuItem>
+                <MenuItem value="Temple">Temple</MenuItem>
+                <MenuItem value="Mosque">Mosque</MenuItem>
+                <MenuItem value="Church">Church</MenuItem>
+                <MenuItem value="Gurudwara">Gurudwara</MenuItem>
+                <MenuItem value="Wildlife Sanctuary">
+                  Wildlife Sanctuary
+                </MenuItem>
+                <MenuItem value="Zoo">Zoo</MenuItem>
+                <MenuItem value="Museum">Museum</MenuItem>
+                <MenuItem value="Amusement Park">Amusement Park</MenuItem>
+                <MenuItem value="Aquarium">Aquarium</MenuItem>
+                <MenuItem value="Restaurant">Restaurant</MenuItem>
+                <MenuItem value="Cafe">Cafe</MenuItem>
+                <MenuItem value="Bar">Bar</MenuItem>
+                <MenuItem value="Nightclub">Nightclub</MenuItem>
+                <MenuItem value="Library">Library</MenuItem>
+                <MenuItem value="Park">Park</MenuItem>
+                <MenuItem value="Garden">Garden</MenuItem>
+                <MenuItem value="Shopping Complex">Shopping Complex</MenuItem>
+                <MenuItem value="Cultural Center">Cultural Center</MenuItem>
+                <MenuItem value="Art Gallery">Art Gallery</MenuItem>
+                <MenuItem value="Cinema Hall">Cinema Hall</MenuItem>
+                <MenuItem value="Sports Complex">Sports Complex</MenuItem>
+                <MenuItem value="Stadium">Stadium</MenuItem>
+                <MenuItem value="Convention Center">Convention Center</MenuItem>
+                <MenuItem value="Food Court">Food Court</MenuItem>
+                <MenuItem value="Street Market">Street Market</MenuItem>
+                <MenuItem value="Railway Station">Railway Station</MenuItem>
+                <MenuItem value="Airport">Airport</MenuItem>
+                <MenuItem value="Bus Stand">Bus Stand</MenuItem>
+                <MenuItem value="Ferry Terminal">Ferry Terminal</MenuItem>
               </Select>
             </FormControl>
           </Grid>

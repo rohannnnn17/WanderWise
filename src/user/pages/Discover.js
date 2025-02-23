@@ -23,7 +23,9 @@ const DiscoverPlaces = () => {
     const fetchPlaces = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`${API_BASE_URL}/api/allplaces/places`);
+        const response = await axios.get(
+          `${API_BASE_URL}/api/allplaces/places`
+        );
         setPlaces(response.data.places || response.data);
         setFilteredPlaces(response.data.places || response.data);
       } catch (err) {

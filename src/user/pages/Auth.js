@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Card from "../../shared/components/UIElements/Card";
 import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/FormElements/Button";
@@ -13,6 +13,7 @@ import {
 import { useForm } from "../../shared/hooks/form-hook";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import { AuthContext } from "../../shared/context/auth-context";
+import Cookie from "js-cookie"; // Import js-cookie for managing cookies
 import "./Auth.css";
 
 const Auth = () => {
@@ -85,6 +86,8 @@ const Auth = () => {
             "Content-Type": "application/json",
           }
         );
+        // Store user ID or token in cookie for session
+        Cookie.set("userId", responseData.user.id, { expires: 7 }); // Set cookie for 7 days
         auth.login(responseData.user.id);
       } catch (err) {}
     } else {
@@ -100,10 +103,20 @@ const Auth = () => {
           formData
         );
 
+        // Store user ID or token in cookie for session
+        Cookie.set("userId", responseData.user.id, { expires: 7 }); // Set cookie for 7 days
         auth.login(responseData.user.id);
       } catch (err) {}
     }
   };
+
+  // Check if a user is already logged in based on cookie
+  useEffect(() => {
+    const storedUserId = Cookie.get("userId");
+    if (storedUserId) {
+      auth.login(storedUserId);
+    }
+  }, [auth]);
 
   return (
     <React.Fragment>
