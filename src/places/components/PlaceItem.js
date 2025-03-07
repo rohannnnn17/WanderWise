@@ -32,9 +32,10 @@ const PlaceItem = (props) => {
     setShowConfirmModal(false);
     try {
       await sendRequest(
-        `http://localhost:5000/api/places/${props.id}`,
+        `https://wanderwise-yy6r.onrender.com/api/places/${props.id}`,
         "DELETE"
       );
+
       props.onDelete(props.id);
     } catch (err) {
       console.error("Failed to delete place:", err);
