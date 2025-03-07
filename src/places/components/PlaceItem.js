@@ -10,6 +10,8 @@ import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import ErrorModal from "../../shared/components/UIElements/ErrorModal";
 import "./PlaceItem.css";
 
+const API_URL = "https://wanderwise-yy6r.onrender.com"; // Hosted backend URL
+
 const PlaceItem = (props) => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const auth = useContext(AuthContext);
@@ -17,24 +19,15 @@ const PlaceItem = (props) => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const openMapHandler = () => setShowMap(true);
-
   const closeMapHandler = () => setShowMap(false);
-
-  const showDeleteWarningHandler = () => {
-    setShowConfirmModal(true);
-  };
-
-  const cancelDeleteHandler = () => {
-    setShowConfirmModal(false);
-  };
+  const showDeleteWarningHandler = () => setShowConfirmModal(true);
+  const cancelDeleteHandler = () => setShowConfirmModal(false);
 
   const confirmDeleteHandler = async () => {
     setShowConfirmModal(false);
     try {
-      await sendRequest(
-        `http://localhost:5000/api/places/${props.id}`,
-        "DELETE"
-      );
+      console.log("Deleting place with ID:", props.id);
+      await sendRequest(`${API_URL}/api/places/${props.id}`, "DELETE");
       props.onDelete(props.id);
     } catch (err) {
       console.error("Failed to delete place:", err);
@@ -90,9 +83,10 @@ const PlaceItem = (props) => {
           {isLoading && <LoadingSpinner asOverlay />}
           <div className="place-item__image">
             <img
-              src={`http://localhost:5000/${props.image}`}
+              src={`${API_URL}/${props.image}`} // Fixed image URL
               alt={props.title}
               aria-label={`Image of ${props.title}`}
+              loading="lazy" // Optimized lazy loading
             />
           </div>
           <div className="place-item__info">
