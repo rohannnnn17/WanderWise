@@ -42,6 +42,13 @@ const DiscoverPlaces = () => {
     setLoading(true);
     setError(null);
 
+    // Handle the case where no search query or category is provided
+    if (!filterData.searchQuery && !filterData.categoryFilter) {
+      setError("Please provide a search term or select a category.");
+      setLoading(false);
+      return;
+    }
+
     try {
       const response = await axios.post(
         `${API_BASE_URL}/api/places/search`, // Use dynamic API base URL
