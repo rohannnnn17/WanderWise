@@ -11,11 +11,11 @@ const DiscoverPlaces = () => {
   const [filteredPlaces, setFilteredPlaces] = useState([]); // Stores filtered places
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
   const API_BASE_URL =
-    window.location.hostname === "localhost"
+    process.env.REACT_APP_API_BASE_URL ||
+    (window.location.hostname === "localhost"
       ? "http://localhost:5000"
-      : "https://wanderwise-yy6r.onrender.com";
+      : "https://wanderwise-yy6r.onrender.com");
 
   // Fetch all places when component mounts
   useEffect(() => {
