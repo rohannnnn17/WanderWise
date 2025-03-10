@@ -41,16 +41,7 @@ const UserPlaces = () => {
           <LoadingSpinner />
         </div>
       )}
-      {!isLoading && loadedPlaces.length === 0 && (
-        <Box textAlign="center" mt={4}>
-          <Typography variant="h5" color="textSecondary">
-            ❌ No places found for this category.
-          </Typography>
-          <Typography variant="body1" color="textSecondary">
-            Try searching for another category or create a new place.
-          </Typography>
-        </Box>
-      )}
+
       {!isLoading && loadedPlaces.length > 0 && (
         <PlaceList items={loadedPlaces} />
       )}
