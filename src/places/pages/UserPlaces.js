@@ -4,36 +4,34 @@ import PlaceList from "../components/PlaceList";
 import ErrorModal from "../../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import { useHttpClient } from "../../shared/hooks/http-hook";
+import { Box, Typography } from "@mui/material"; // Import Material UI components
 
 const UserPlaces = () => {
-  const [loadedPlaces, setLoadedPlaces] = useState();
+  const [loadedPlaces, setLoadedPlaces] = useState([]);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-
   const userId = useParams().userId;
 
-  // Dynamically set the API base URL
   const API_BASE_URL =
     window.location.hostname === "localhost"
-      ? "http://localhost:5000" // Local API URL (for development)
-      : "https://wanderwise-yy6r.onrender.com"; // Production API URL
+      ? "http://localhost:5000"
+      : "https://wanderwise-yy6r.onrender.com";
 
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
         const responseData = await sendRequest(
-          `${API_BASE_URL}/api/places/user/${userId}` // Use dynamic API base URL
+          `${API_BASE_URL}/api/places/user/${userId}`
         );
+
+        console.log("✅ API Response:", responseData.places); // Debugging log
         setLoadedPlaces(responseData.places);
-      } catch (err) {}
+      } catch (err) {
+        console.error("❌ Fetch Error:", err);
+      }
     };
+
     fetchPlaces();
   }, [sendRequest, userId]);
-
-  const placeDeletedHandler = (deletedPlaceId) => {
-    setLoadedPlaces((prevPlaces) =>
-      prevPlaces.filter((place) => place.id !== deletedPlaceId)
-    );
-  };
 
   return (
     <React.Fragment>
@@ -43,8 +41,18 @@ const UserPlaces = () => {
           <LoadingSpinner />
         </div>
       )}
-      {!isLoading && loadedPlaces && (
-        <PlaceList items={loadedPlaces} onDeletePlace={placeDeletedHandler} />
+      {!isLoading && loadedPlaces.length === 0 && (
+        <Box textAlign="center" mt={4}>
+          <Typography variant="h5" color="textSecondary">
+            ❌ No places found for this category.
+          </Typography>
+          <Typography variant="body1" color="textSecondary">
+            Try searching for another category or create a new place.
+          </Typography>
+        </Box>
+      )}
+      {!isLoading && loadedPlaces.length > 0 && (
+        <PlaceList items={loadedPlaces} />
       )}
     </React.Fragment>
   );

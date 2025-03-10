@@ -15,12 +15,59 @@ import { AuthContext } from "../../shared/context/auth-context";
 import "./PlaceForm.css";
 import ImageUpload from "../../shared/components/FormElements/ImageUpload";
 
+const PLACE_TYPES = [
+  "Nature Spot",
+  "Camping Spot",
+  "Hotel",
+  "Hostel",
+  "PG",
+  "Mall",
+  "Historic Place",
+  "Monument",
+  "Trekking Spot",
+  "Beach",
+  "Resort",
+  "Waterfall",
+  "Temple",
+  "Mosque",
+  "Church",
+  "Gurudwara",
+  "Wildlife Sanctuary",
+  "Zoo",
+  "Museum",
+  "Amusement Park",
+  "Aquarium",
+  "Restaurant",
+  "Cafe",
+  "Bar",
+  "Nightclub",
+  "Library",
+  "Park",
+  "Garden",
+  "Shopping Complex",
+  "Cultural Center",
+  "Art Gallery",
+  "Cinema Hall",
+  "Sports Complex",
+  "Stadium",
+  "Convention Center",
+  "Food Court",
+  "Street Market",
+  "Railway Station",
+  "Airport",
+  "Bus Stand",
+  "Ferry Terminal",
+];
+
+const API_BASE_URL =
+  process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
+
 const NewPlace = () => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  const [placeType, setPlaceType] = useState(""); // State for place type
-  const [placeTypeError, setPlaceTypeError] = useState(false); // State for validation error
-  const [formState, inputHandler] = useForm(
+  const [placeType, setPlaceType] = useState("");
+
+  const [formState, inputHandler, setFormData] = useForm(
     {
       title: { value: "", isValid: false },
       description: { value: "", isValid: false },
@@ -32,15 +79,10 @@ const NewPlace = () => {
 
   const history = useHistory();
 
-  const API_BASE_URL =
-    window.location.hostname === "localhost"
-      ? "http://localhost:5000"
-      : "https://wanderwise-yy6r.onrender.com";
-
   const placeSubmitHandler = async (event) => {
     event.preventDefault();
+
     if (!placeType) {
-      setPlaceTypeError(true);
       return;
     }
 
@@ -55,12 +97,9 @@ const NewPlace = () => {
 
       await sendRequest(`${API_BASE_URL}/api/places`, "POST", formData);
       history.push("/");
-    } catch (err) {}
-  };
-
-  const placeTypeChangeHandler = (event) => {
-    setPlaceType(event.target.value);
-    setPlaceTypeError(false);
+    } catch (err) {
+      console.error("Error submitting place:", err);
+    }
   };
 
   return (
@@ -68,6 +107,7 @@ const NewPlace = () => {
       <ErrorModal error={error} onClear={clearError} />
       <form className="place-form" onSubmit={placeSubmitHandler}>
         {isLoading && <LoadingSpinner asOverlay />}
+
         <Input
           id="title"
           element="input"
@@ -77,6 +117,7 @@ const NewPlace = () => {
           errorText="Please enter a valid title."
           onInput={inputHandler}
         />
+
         <Input
           id="description"
           element="textarea"
@@ -85,6 +126,7 @@ const NewPlace = () => {
           errorText="Please enter a valid Review (at least 5 characters)."
           onInput={inputHandler}
         />
+
         <Input
           id="address"
           element="input"
@@ -93,64 +135,29 @@ const NewPlace = () => {
           errorText="Please enter a valid address."
           onInput={inputHandler}
         />
+
         <ImageUpload
           id="image"
           onInput={inputHandler}
           errorText="Please provide an image"
         />
 
-        {/* Dropdown for selecting place type */}
+        {/* Place Type Dropdown */}
         <div className="form-control">
           <label htmlFor="placeType">Place Type</label>
           <select
             id="placeType"
             value={placeType}
-            onChange={placeTypeChangeHandler}
+            onChange={(e) => setPlaceType(e.target.value)}
             required>
             <option value="">-- Select a Place Type --</option>
-            <option value="Nature Spot">Nature Spot</option>
-            <option value="Camping Spot">Camping Spot</option>
-            <option value="Hotel">Hotel</option>
-            <option value="Hostel">Hostel</option>
-            <option value="PG">PG</option>
-            <option value="Mall">Mall</option>
-            <option value="Historic Place">Historic Place</option>
-            <option value="Monument">Monument</option>
-            <option value="Trekking Spot">Trekking Spot</option>
-            <option value="Beach">Beach</option>
-            <option value="Resort">Resort</option>
-            <option value="Waterfall">Waterfall</option>
-            <option value="Temple">Temple</option>
-            <option value="Mosque">Mosque</option>
-            <option value="Church">Church</option>
-            <option value="Gurudwara">Gurudwara</option>
-            <option value="Wildlife Sanctuary">Wildlife Sanctuary</option>
-            <option value="Zoo">Zoo</option>
-            <option value="Museum">Museum</option>
-            <option value="Amusement Park">Amusement Park</option>
-            <option value="Aquarium">Aquarium</option>
-            <option value="Restaurant">Restaurant</option>
-            <option value="Cafe">Cafe</option>
-            <option value="Bar">Bar</option>
-            <option value="Nightclub">Nightclub</option>
-            <option value="Library">Library</option>
-            <option value="Park">Park</option>
-            <option value="Garden">Garden</option>
-            <option value="Shopping Complex">Shopping Complex</option>
-            <option value="Cultural Center">Cultural Center</option>
-            <option value="Art Gallery">Art Gallery</option>
-            <option value="Cinema Hall">Cinema Hall</option>
-            <option value="Sports Complex">Sports Complex</option>
-            <option value="Stadium">Stadium</option>
-            <option value="Convention Center">Convention Center</option>
-            <option value="Food Court">Food Court</option>
-            <option value="Street Market">Street Market</option>
-            <option value="Railway Station">Railway Station</option>
-            <option value="Airport">Airport</option>
-            <option value="Bus Stand">Bus Stand</option>
-            <option value="Ferry Terminal">Ferry Terminal</option>
+            {PLACE_TYPES.map((type) => (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            ))}
           </select>
-          {placeTypeError && (
+          {!placeType && (
             <p className="error-text">Please select a place type.</p>
           )}
         </div>
