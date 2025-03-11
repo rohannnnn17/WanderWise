@@ -29,10 +29,6 @@
   z-index: 1; /* Ensure overlay is above the background */
 }
 
-.landing-page:hover::before {
-  opacity: 1; /* Show overlay on hover */
-}
-
 /* Header Section */
 .landing-page header {
   position: relative; /* Position relative to keep header above the overlay */
