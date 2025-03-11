@@ -1,22 +1,22 @@
 /* General Form Styles */
 .place-form {
-  max-width: 600px;
+  max-width: 400px; /* Reduced max-width for a smaller form */
   margin: 0 auto;
-  padding: 20px;
+  padding: 15px; /* Reduced padding */
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .place-form .form-control {
-  margin-bottom: 20px;
+  margin-bottom: 15px; /* Reduced margin */
 }
 
 .place-form label {
-  font-size: 16px;
+  font-size: 14px; /* Smaller font size */
   font-weight: bold;
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 6px; /* Reduced margin */
   color: #333;
 }
 
@@ -24,10 +24,10 @@
 .place-form textarea,
 .place-form select {
   width: 100%;
-  padding: 12px;
-  font-size: 14px;
+  padding: 10px; /* Reduced padding */
+  font-size: 14px; /* Smaller font size */
   border: 1px solid #ccc;
-  border-radius: 6px;
+  border-radius: 4px; /* Slightly smaller border radius */
   box-sizing: border-box;
   background-color: #fff;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -41,33 +41,18 @@
   box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
-.place-form input[type="text"],
-.place-form input[type="email"],
-.place-form input[type="password"] {
-  background-color: #f7f7f7;
-}
-
 .place-form textarea {
-  min-height: 120px;
-}
-
-.place-form select {
-  background-color: #f7f7f7;
-}
-
-.place-form select option {
-  padding: 8px;
-  background-color: #fff;
+  min-height: 80px; /* Reduced minimum height */
 }
 
 .place-form .form-control button {
   width: 100%;
-  padding: 12px;
-  font-size: 16px;
+  padding: 10px; /* Reduced padding */
+  font-size: 14px; /* Smaller font size */
   color: #fff;
   background-color: #4caf50;
   border: none;
-  border-radius: 6px;
+  border-radius: 4px; /* Slightly smaller border radius */
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -83,93 +68,75 @@
 
 .place-form .error-text {
   color: #f44336;
-  font-size: 14px;
-}
-
-.place-form .place-type-select {
-  font-size: 14px;
-  padding: 12px;
-}
-
-.place-form .place-type-label {
-  margin-bottom: 8px;
-  display: block;
-  font-weight: bold;
+  font-size: 12px; /* Smaller font size */
 }
 
 /* Mobile-First Styles (for smaller devices) */
 @media (max-width: 768px) {
   .place-form {
-    padding: 15px;
-    width: 100%;
-    box-shadow: none;
-    border-radius: 4px;
+    padding: 10px; /* Further reduced padding */
   }
 
   .place-form input,
   .place-form textarea,
   .place-form select {
-    padding: 10px;
-    font-size: 14px;
+    padding: 8px; /* Further reduced padding */
+    font-size: 12px; /* Smaller font size */
   }
 
   .place-form .form-control button {
-    padding: 10px;
-    font-size: 14px;
+    padding: 8px; /* Further reduced padding */
+    font-size: 12px; /* Smaller font size */
   }
 
   .place-form label {
-    font-size: 14px;
-  }
-
-  .place-form .form-control {
-    margin-bottom: 15px;
+    font-size: 12px; /* Smaller font size */
   }
 }
 
 /* Tablet and Small Desktop (from 768px and above) */
 @media (min-width: 768px) {
   .place-form {
-    padding: 25px;
+    padding: 20px; /* Slightly increased padding */
   }
 
   .place-form input,
   .place-form textarea,
   .place-form select {
-    font-size: 16px;
-    padding: 12px;
+    font-size: 14px; /* Adjusted font size */
+    padding: 10px; /* Adjusted padding */
   }
 
   .place-form .form-control button {
-    padding: 14px;
-    font-size: 16px;
+    padding: 12px; /* Adjusted padding */
+    font-size: 14px; /* Adjusted font size */
   }
 
   .place-form label {
-    font-size: 16px;
+    font-size: 14px; /* Adjusted font size */
   }
 }
 
 /* Large Desktop (from 1024px and above) */
 @media (min-width: 1024px) {
   .place-form {
-    max-width: 800px;
-    padding: 30px;
+    max-width: 600px; /* Adjusted max-width */
+    padding: 25px; /* Adjusted padding */
   }
 
   .place-form input,
   .place-form textarea,
   .place-form select {
-    font-size: 18px;
-    padding: 14px;
+    font-size: 16px; /* Adjusted font size */
+    padding: 12px; /* Adjusted padding */
   }
 
   .place-form .form-control button {
-    padding: 16px;
-    font-size: 18px;
+    padding: 14px; /* Adjusted padding */
+    font-size: 16px; /* Adjusted font size */
   }
 
   .place-form label {
-    font-size: 18px;
+    font-size: 16px; /* Adjusted font size */
   }
 }

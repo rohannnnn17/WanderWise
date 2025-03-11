@@ -1,5 +1,6 @@
 /* Landing Page Container */
 .landing-page {
+  position: relative; /* Position relative for the overlay */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,14 +8,37 @@
   text-align: center;
   padding: 60px 20px;
   min-height: 100vh;
-  background: linear-gradient(
-    to bottom,
-    #d1e7fd,
-    #c3d9f1
-  ); /* Gradient background */
+  background-image: url("./assets/background.jpg"); /* Use the image path directly */
+  background-size: cover; /* Cover the entire area */
+  background-position: center; /* Center the image */
+  color: white; /* Change text color for better contrast */
+  overflow: hidden; /* Hide overflow for the overlay */
+}
+
+/* Overlay Effect */
+.landing-page::before {
+  content: "";
+  position: absolute; /* Position absolute to cover the entire area */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  opacity: 0; /* Start with no opacity */
+  transition: opacity 0.3s ease; /* Smooth transition for opacity */
+  z-index: 1; /* Ensure overlay is above the background */
+}
+
+.landing-page:hover::before {
+  opacity: 1; /* Show overlay on hover */
 }
 
 /* Header Section */
+.landing-page header {
+  position: relative; /* Position relative to keep header above the overlay */
+  z-index: 2; /* Ensure header is above the overlay */
+}
+
 .landing-page header h1 {
   font-size: 3.5rem;
   font-weight: 700;
@@ -58,6 +82,7 @@
   margin: 0 auto;
   padding: 40px 0;
   justify-items: center; /* Center items horizontally */
+  z-index: 2; /* Ensure features are above the overlay */
 }
 
 .landing-page .features .card {
@@ -72,7 +97,12 @@
 /* Card Styles */
 .landing-page .card {
   border-radius: 15px;
-  background-color: #fff;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* Semi-transparent white background */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;

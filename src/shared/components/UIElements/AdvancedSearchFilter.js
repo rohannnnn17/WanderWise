@@ -26,13 +26,14 @@ const AdvancedSearchFilter = ({ onSearch }) => {
   };
 
   return (
-    <form onSubmit={submitHandler}>
+    <form marginTop={2} onSubmit={submitHandler}>
       <Box
         p={2}
         boxShadow={1}
         borderRadius={2}
         bgcolor="#fff"
         maxWidth={600}
+        marginTop={2}
         mx="auto">
         <Grid container spacing={2}>
           {/* Search by Name */}
