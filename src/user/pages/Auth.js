@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useHistory } from "react-router-dom"; // Fix: Use useHistory instead of useNavigate
 import Card from "../../shared/components/UIElements/Card";
 import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/FormElements/Button";
@@ -13,24 +14,19 @@ import {
 import { useForm } from "../../shared/hooks/form-hook";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import { AuthContext } from "../../shared/context/auth-context";
-import Cookie from "js-cookie"; // Import js-cookie for managing cookies
+import Cookie from "js-cookie";
 import "./Auth.css";
 
 const Auth = () => {
   const auth = useContext(AuthContext);
+  const history = useHistory(); // Fix: Use useHistory instead of useNavigate
   const [isLoginMode, setIsLoginMode] = useState(true);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const [formState, inputHandler, setFormData] = useForm(
     {
-      email: {
-        value: "",
-        isValid: false,
-      },
-      password: {
-        value: "",
-        isValid: false,
-      },
+      email: { value: "", isValid: false },
+      password: { value: "", isValid: false },
     },
     false
   );
@@ -49,14 +45,8 @@ const Auth = () => {
       setFormData(
         {
           ...formState.inputs,
-          name: {
-            value: "",
-            isValid: false,
-          },
-          image: {
-            value: null,
-            isValid: false,
-          },
+          name: { value: "", isValid: false },
+          image: { value: null, isValid: false },
         },
         false
       );
@@ -64,59 +54,53 @@ const Auth = () => {
     setIsLoginMode((prevMode) => !prevMode);
   };
 
-  // Dynamically set the API base URL
   const API_BASE_URL =
     window.location.hostname === "localhost"
-      ? "http://localhost:5000" // Local API URL (for development)
-      : "https://wanderwise-yy6r.onrender.com"; // Production API URL
+      ? "http://localhost:5000"
+      : "https://wanderwise-yy6r.onrender.com";
 
   const authSubmitHandler = async (event) => {
     event.preventDefault();
 
-    if (isLoginMode) {
-      try {
+    try {
+      if (isLoginMode) {
         const responseData = await sendRequest(
-          `${API_BASE_URL}/api/users/login`, // Use dynamic API base URL
+          `${API_BASE_URL}/api/users/login`,
           "POST",
           JSON.stringify({
             email: formState.inputs.email.value,
             password: formState.inputs.password.value,
           }),
-          {
-            "Content-Type": "application/json",
-          }
+          { "Content-Type": "application/json" }
         );
-        // Store user ID or token in cookie for session
-        Cookie.set("userId", responseData.user.id, { expires: 7 }); // Set cookie for 7 days
+        Cookie.set("userId", responseData.user.id, { expires: 7 });
         auth.login(responseData.user.id);
-      } catch (err) {}
-    } else {
-      try {
+        history.push("/"); // Fix: Use history.push instead of navigate()
+      } else {
         const formData = new FormData();
         formData.append("email", formState.inputs.email.value);
         formData.append("name", formState.inputs.name.value);
         formData.append("password", formState.inputs.password.value);
         formData.append("image", formState.inputs.image.value);
         const responseData = await sendRequest(
-          `${API_BASE_URL}/api/users/signup`, // Use dynamic API base URL
+          `${API_BASE_URL}/api/users/signup`,
           "POST",
           formData
         );
-
-        // Store user ID or token in cookie for session
-        Cookie.set("userId", responseData.user.id, { expires: 7 }); // Set cookie for 7 days
+        Cookie.set("userId", responseData.user.id, { expires: 7 });
         auth.login(responseData.user.id);
-      } catch (err) {}
-    }
+        history.push("/"); // Fix: Use history.push instead of navigate()
+      }
+    } catch (err) {}
   };
 
-  // Check if a user is already logged in based on cookie
   useEffect(() => {
     const storedUserId = Cookie.get("userId");
-    if (storedUserId) {
+    if (storedUserId && !auth.isLoggedIn) {
       auth.login(storedUserId);
+      history.push("/"); // Fix: Redirect to home if logged in
     }
-  }, [auth]);
+  }, [auth, history]);
 
   return (
     <React.Fragment>

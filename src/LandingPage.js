@@ -1,12 +1,46 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom"; // Import Link for routing
+import { Link, useHistory } from "react-router-dom";
+import Cookie from "js-cookie";
 import Button from "./shared/components/FormElements/Button";
 import Card from "./shared/components/UIElements/Card";
-import { CardContent } from "@mui/material";
+import { AuthContext } from "./shared/context/auth-context";
 import "./Landing.css"; // Import the custom CSS file
 
+const features = [
+  {
+    icon: "📍",
+    title: "Discover Places",
+    description: "Find amazing locations shared by others.",
+    link: "/discover",
+  },
+  {
+    icon: "🌟",
+    title: "Create Your List",
+    description: "Save and manage your favorite spots.",
+    link: "/places/new",
+  },
+  {
+    icon: "🚀",
+    title: "Share with Friends",
+    description: "Let others explore the places you love.",
+    link: "/discover",
+  },
+];
+
 const LandingPage = () => {
+  const history = useHistory(); // For redirection
+  const auth = useContext(AuthContext); // Access authentication context
+
+  useEffect(() => {
+    // Check if user is already logged in via cookies
+    const storedUserId = Cookie.get("userId");
+    if (storedUserId && !auth.isLoggedIn) {
+      auth.login(storedUserId); // Log the user in
+      history.push("/"); // Redirect to home page
+    }
+  }, [auth, history]);
+
   return (
     <div className="landing-page">
       <header>
@@ -34,45 +68,28 @@ const LandingPage = () => {
 
       <main className="features">
         {features.map((feature, index) => (
-          <Link to={feature.link} key={index} className="link-card">
-            <Card className="card">
-              <CardContent className="card-content">
+          <article key={index} className="feature-card">
+            <Link
+              to={feature.link}
+              className="link-card"
+              aria-label={feature.title}>
+              <Card className="card">
                 <motion.div
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: index * 0.2, duration: 0.5 }}>
+                  transition={{ delay: index * 0.2, duration: 0.5 }}
+                  className="card-content">
                   <div className="icon">{feature.icon}</div>
                   <h2>{feature.title}</h2>
                   <p className="description">{feature.description}</p>
                 </motion.div>
-              </CardContent>
-            </Card>
-          </Link>
+              </Card>
+            </Link>
+          </article>
         ))}
       </main>
     </div>
   );
 };
-
-const features = [
-  {
-    icon: "📍",
-    title: "Discover Places",
-    description: "Find amazing locations shared by others.",
-    link: "/discover", // Link to Discover page
-  },
-  {
-    icon: "🌟",
-    title: "Create Your List",
-    description: "Save and manage your favorite spots.",
-    link: "/places/new", // Updated link to /places/new
-  },
-  {
-    icon: "🚀",
-    title: "Share with Friends",
-    description: "Let others explore the places you love.",
-    link: "/discover", // Link to Discover page
-  },
-];
 
 export default LandingPage;
