@@ -64,34 +64,45 @@ const Auth = () => {
 
     try {
       if (isLoginMode) {
+        const requestData = {
+          email: formState.inputs.email.value,
+          password: formState.inputs.password.value,
+        };
+        console.log("🛠 Sending login data:", requestData); // Debugging
+
         const responseData = await sendRequest(
           `${API_BASE_URL}/api/users/login`,
           "POST",
-          JSON.stringify({
-            email: formState.inputs.email.value,
-            password: formState.inputs.password.value,
-          }),
+          JSON.stringify(requestData),
           { "Content-Type": "application/json" }
         );
+
         Cookie.set("userId", responseData.user.id, { expires: 7 });
         auth.login(responseData.user.id);
-        history.push("/"); // Fix: Use history.push instead of navigate()
+        history.push("/");
       } else {
-        const formData = new FormData();
-        formData.append("email", formState.inputs.email.value);
-        formData.append("name", formState.inputs.name.value);
-        formData.append("password", formState.inputs.password.value);
-        formData.append("image", formState.inputs.image.value);
+        const requestData = {
+          email: formState.inputs.email.value,
+          name: formState.inputs.name.value,
+          password: formState.inputs.password.value,
+          image: formState.inputs.image.value, // Ensure this is not undefined
+        };
+        console.log("🛠 Sending signup data:", requestData); // Debugging
+
         const responseData = await sendRequest(
           `${API_BASE_URL}/api/users/signup`,
           "POST",
-          formData
+          JSON.stringify(requestData),
+          { "Content-Type": "application/json" }
         );
+
         Cookie.set("userId", responseData.user.id, { expires: 7 });
         auth.login(responseData.user.id);
-        history.push("/"); // Fix: Use history.push instead of navigate()
+        history.push("/");
       }
-    } catch (err) {}
+    } catch (err) {
+      console.error("❌ Signup Error:", err.message);
+    }
   };
 
   useEffect(() => {
