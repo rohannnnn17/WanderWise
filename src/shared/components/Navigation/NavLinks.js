@@ -1,16 +1,21 @@
 import React, { useContext } from "react";
-import { NavLink, useHistory } from "react-router-dom";
-
+import { NavLink, useHistory } from "react-router-dom"; // Use useHistory instead of useNavigate
 import { AuthContext } from "../../context/auth-context";
+import Cookie from "js-cookie";
 import "./NavLinks.css";
 
-const NavLinks = (props) => {
+const NavLinks = () => {
   const auth = useContext(AuthContext);
-  const history = useHistory(); // Get the history object
+  const history = useHistory(); // Use useHistory for React Router v5
 
   const logoutHandler = () => {
     auth.logout();
-    history.push("/"); // Redirect to homepage after logout
+
+    // Ensure all auth-related cookies are removed
+    Cookie.remove("userId");
+    document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+    history.push("/auth"); // Redirect to login page after logout
   };
 
   return (
@@ -35,10 +40,11 @@ const NavLinks = (props) => {
           <NavLink to="/auth">AUTHENTICATE</NavLink>
         </li>
       )}
-
       {auth.isLoggedIn && (
         <li>
-          <button onClick={logoutHandler}>LOGOUT</button>
+          <button type="button" onClick={logoutHandler}>
+            LOGOUT
+          </button>
         </li>
       )}
     </ul>

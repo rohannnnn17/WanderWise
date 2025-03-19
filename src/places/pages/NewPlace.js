@@ -69,6 +69,7 @@ const NewPlace = () => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [placeType, setPlaceType] = useState("");
+  const [imageError, setImageError] = useState(false);
 
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -86,8 +87,17 @@ const NewPlace = () => {
     event.preventDefault();
 
     if (!placeType) {
+      console.error("Place type is required.");
       return;
     }
+
+    if (!formState.inputs.image.value) {
+      setImageError(true);
+      console.error("No image selected!");
+      return;
+    }
+
+    setImageError(false);
 
     try {
       const formData = new FormData();
@@ -96,7 +106,7 @@ const NewPlace = () => {
       formData.append("address", formState.inputs.address.value);
       formData.append("placeType", placeType);
       formData.append("creator", auth.userId);
-      formData.append("image", formState.inputs.image.value);
+      formData.append("image", formState.inputs.image.value); // ✅ This should be an image URL from Cloudinary
 
       await sendRequest(`${API_BASE_URL}/api/places`, "POST", formData);
       history.push("/");
@@ -139,11 +149,13 @@ const NewPlace = () => {
           onInput={inputHandler}
         />
 
+        {/* Image Upload */}
         <ImageUpload
           id="image"
           onInput={inputHandler}
           errorText="Please provide an image"
         />
+        {imageError && <p className="error-text">Please upload an image.</p>}
 
         {/* Place Type Dropdown */}
         <div className="form-control">

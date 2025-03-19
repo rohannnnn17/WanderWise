@@ -16,16 +16,9 @@ const PlaceItem = (props) => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const openMapHandler = () => setShowMap(true);
-
   const closeMapHandler = () => setShowMap(false);
-
-  const showDeleteWarningHandler = () => {
-    setShowConfirmModal(true);
-  };
-
-  const cancelDeleteHandler = () => {
-    setShowConfirmModal(false);
-  };
+  const showDeleteWarningHandler = () => setShowConfirmModal(true);
+  const cancelDeleteHandler = () => setShowConfirmModal(false);
 
   const confirmDeleteHandler = async () => {
     setShowConfirmModal(false);
@@ -46,6 +39,11 @@ const PlaceItem = (props) => {
     props.coordinates &&
     typeof props.coordinates.lat === "number" &&
     typeof props.coordinates.lng === "number";
+
+  // ✅ Fix: Handle both Cloudinary & Local images
+  const imageUrl = props.image.startsWith("http")
+    ? props.image // Cloudinary image (full URL)
+    : `http://localhost:5000/${props.image}`; // Local image
 
   return (
     <React.Fragment>
@@ -90,7 +88,7 @@ const PlaceItem = (props) => {
           {isLoading && <LoadingSpinner asOverlay />}
           <div className="place-item__image">
             <img
-              src={`http://localhost:5000/${props.image}`}
+              src={imageUrl}
               alt={props.title}
               aria-label={`Image of ${props.title}`}
             />
