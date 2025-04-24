@@ -58,7 +58,6 @@ const AdvancedSearchFilter = ({ onSearch }) => {
                 label="Category">
                 <MenuItem value="">-- Select a Place Type --</MenuItem>
                 <MenuItem value="Nature Spot">Nature Spot</MenuItem>
-                <MenuItem value="Camping Spot">Camping Spot</MenuItem>
                 <MenuItem value="Hotel">Hotel</MenuItem>
                 <MenuItem value="Hostel">Hostel</MenuItem>
                 <MenuItem value="PG">PG</MenuItem>
@@ -83,7 +82,6 @@ const AdvancedSearchFilter = ({ onSearch }) => {
                 <MenuItem value="Restaurant">Restaurant</MenuItem>
                 <MenuItem value="Cafe">Cafe</MenuItem>
                 <MenuItem value="Bar">Bar</MenuItem>
-                <MenuItem value="Nightclub">Nightclub</MenuItem>
                 <MenuItem value="Library">Library</MenuItem>
                 <MenuItem value="Park">Park</MenuItem>
                 <MenuItem value="Garden">Garden</MenuItem>
@@ -99,7 +97,6 @@ const AdvancedSearchFilter = ({ onSearch }) => {
                 <MenuItem value="Railway Station">Railway Station</MenuItem>
                 <MenuItem value="Airport">Airport</MenuItem>
                 <MenuItem value="Bus Stand">Bus Stand</MenuItem>
-                <MenuItem value="Ferry Terminal">Ferry Terminal</MenuItem>
               </Select>
             </FormControl>
           </Grid>

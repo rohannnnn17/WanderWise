@@ -17,7 +17,6 @@ import ImageUpload from "../../shared/components/FormElements/ImageUpload";
 
 const PLACE_TYPES = [
   "Nature Spot",
-  "Camping Spot",
   "Hotel",
   "Hostel",
   "PG",
@@ -40,7 +39,6 @@ const PLACE_TYPES = [
   "Restaurant",
   "Cafe",
   "Bar",
-  "Nightclub",
   "Library",
   "Park",
   "Garden",
@@ -56,7 +54,6 @@ const PLACE_TYPES = [
   "Railway Station",
   "Airport",
   "Bus Stand",
-  "Ferry Terminal",
 ];
 
 const API_BASE_URL =
