@@ -17,6 +17,8 @@ import ImageUpload from "../../shared/components/FormElements/ImageUpload";
 
 const PLACE_TYPES = [
   "Nature Spot",
+  "College",
+  "School",
   "Hotel",
   "Hostel",
   "PG",
@@ -38,7 +40,6 @@ const PLACE_TYPES = [
   "Aquarium",
   "Restaurant",
   "Cafe",
-  "Bar",
   "Library",
   "Park",
   "Garden",
@@ -48,7 +49,6 @@ const PLACE_TYPES = [
   "Cinema Hall",
   "Sports Complex",
   "Stadium",
-  "Convention Center",
   "Food Court",
   "Street Market",
   "Railway Station",
@@ -103,7 +103,7 @@ const NewPlace = () => {
       formData.append("address", formState.inputs.address.value);
       formData.append("placeType", placeType);
       formData.append("creator", auth.userId);
-      formData.append("image", formState.inputs.image.value); // ✅ This should be an image URL from Cloudinary
+      formData.append("image", formState.inputs.image.value); // Cloudinary image upload
 
       await sendRequest(`${API_BASE_URL}/api/places`, "POST", formData);
       history.push("/");
