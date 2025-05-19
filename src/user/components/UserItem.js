@@ -5,7 +5,7 @@ import Avatar from "../../shared/components/UIElements/Avatar";
 import Card from "../../shared/components/UIElements/Card";
 import "./UserItem.css";
 
-const API_URL = "https://wanderwise-yy6r.onrender.com"; // Hosted backend URL
+const API_URL = "https://wanderwise-yy6r.onrender.com"; //Backend url
 
 const UserItem = (props) => {
   return (
@@ -14,9 +14,9 @@ const UserItem = (props) => {
         <Link to={`/${props.id}/places`}>
           <div className="user-item__image">
             <Avatar
-              image={`${API_URL}/${props.image}`} // Fixed image URL
+              image={`${API_URL}/${props.image}`}
               alt={props.name}
-              loading="lazy" // Optimized image loading
+              loading="lazy"
             />
           </div>
           <div className="user-item__info">

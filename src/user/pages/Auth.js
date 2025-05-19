@@ -19,7 +19,7 @@ import "./Auth.css";
 
 const Auth = () => {
   const auth = useContext(AuthContext);
-  const history = useHistory(); // Fix: Use useHistory instead of useNavigate
+  const history = useHistory();
   const [isLoginMode, setIsLoginMode] = useState(true);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
@@ -85,7 +85,7 @@ const Auth = () => {
           email: formState.inputs.email.value,
           name: formState.inputs.name.value,
           password: formState.inputs.password.value,
-          image: formState.inputs.image.value, // Ensure this is not undefined
+          image: formState.inputs.image.value,
         };
         console.log("🛠 Sending signup data:", requestData); // Debugging
 
@@ -109,7 +109,7 @@ const Auth = () => {
     const storedUserId = Cookie.get("userId");
     if (storedUserId && !auth.isLoggedIn) {
       auth.login(storedUserId);
-      history.push("/"); // Fix: Redirect to home if logged in
+      history.push("/");
     }
   }, [auth, history]);
 

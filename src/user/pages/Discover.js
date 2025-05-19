@@ -7,8 +7,8 @@ import AdvancedSearchFilter from "../../shared/components/UIElements/AdvancedSea
 import "./DiscoverPlaces.css";
 
 const DiscoverPlaces = () => {
-  const [places, setPlaces] = useState([]); // Stores all places
-  const [filteredPlaces, setFilteredPlaces] = useState([]); // Stores filtered places
+  const [places, setPlaces] = useState([]);
+  const [filteredPlaces, setFilteredPlaces] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const API_BASE_URL =
@@ -17,7 +17,6 @@ const DiscoverPlaces = () => {
       ? "http://localhost:5000"
       : "https://wanderwise-yy6r.onrender.com");
 
-  // Fetch all places when component mounts
   useEffect(() => {
     const fetchPlaces = async () => {
       setLoading(true);
@@ -40,7 +39,6 @@ const DiscoverPlaces = () => {
     fetchPlaces();
   }, []);
 
-  // Handle search/filter requests
   const searchHandler = async (filterData) => {
     setLoading(true);
     setError(null);
@@ -65,7 +63,6 @@ const DiscoverPlaces = () => {
     setLoading(false);
   };
 
-  // Reset filters & show all places
   const resetFilters = () => {
     setFilteredPlaces(places);
     setError(null);

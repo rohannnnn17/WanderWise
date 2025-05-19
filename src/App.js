@@ -30,11 +30,10 @@ const App = () => {
     setUserId(null);
   }, []);
 
-  // Dynamically set the API base URL
   const API_BASE_URL =
     window.location.hostname === "localhost"
-      ? "http://localhost:5000" // Local API URL (for development)
-      : "https://wanderwise-yy6r.onrender.com"; // Production API URL
+      ? "http://localhost:5000"
+      : "https://wanderwise-yy6r.onrender.com";
 
   let routes;
 

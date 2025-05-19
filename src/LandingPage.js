@@ -29,15 +29,14 @@ const features = [
 ];
 
 const LandingPage = () => {
-  const history = useHistory(); // For redirection
-  const auth = useContext(AuthContext); // Access authentication context
+  const history = useHistory();
+  const auth = useContext(AuthContext);
 
   useEffect(() => {
-    // Check if user is already logged in via cookies
     const storedUserId = Cookie.get("userId");
     if (storedUserId && !auth.isLoggedIn) {
-      auth.login(storedUserId); // Log the user in
-      history.push("/"); // Redirect to home page
+      auth.login(storedUserId);
+      history.push("/");
     }
   }, [auth, history]);
 

@@ -1,6 +1,5 @@
-/* Landing Page Container */
 .landing-page {
-  position: relative; /* Position relative for the overlay */
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,53 +7,51 @@
   text-align: center;
   padding: 60px 20px;
   min-height: 100vh;
-  background-image: url("./assets/background.jpg"); /* Use the image path directly */
-  background-size: cover; /* Cover the entire area */
-  background-position: center; /* Center the image */
-  color: white; /* Change text color for better contrast */
-  overflow: hidden; /* Hide overflow for the overlay */
+  background-image: url("./assets/background.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  overflow: hidden;
 }
 
-/* Overlay Effect */
 .landing-page::before {
   content: "";
-  position: absolute; /* Position absolute to cover the entire area */
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
-  opacity: 0; /* Start with no opacity */
-  transition: opacity 0.3s ease; /* Smooth transition for opacity */
-  z-index: 1; /* Ensure overlay is above the background */
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
 }
 
-/* Header Section */
 .landing-page header {
-  position: relative; /* Position relative to keep header above the overlay */
-  z-index: 2; /* Ensure header is above the overlay */
+  position: relative;
+  z-index: 2;
 }
 
 .landing-page header h1 {
   font-size: 3.5rem;
   font-weight: 700;
-  color: #1e3a8a; /* Deep blue color */
+  color: #1e3a8a;
   margin-bottom: 20px;
   transition: transform 0.3s ease;
 }
 
 .landing-page header h1:hover {
-  transform: translateY(-5px); /* Hover effect for header */
+  transform: translateY(-5px);
 }
 
 .landing-page header p {
   font-size: 1.25rem;
-  color: #4a5568; /* Subtle dark gray for text */
+  color: #4a5568;
   margin-bottom: 30px;
 }
 
 .landing-page header .btn-start {
-  background-color: #3182ce; /* Blue background for the button */
+  background-color: #3182ce;
   color: #fff;
   padding: 15px 40px;
   font-size: 1.2rem;
@@ -65,25 +62,24 @@
 }
 
 .landing-page header .btn-start:hover {
-  background-color: #2b6cb0; /* Darker blue when hovered */
-  transform: translateY(-2px); /* Slight lift on hover */
+  background-color: #2b6cb0;
+  transform: translateY(-2px);
 }
 
-/* Features Section */
 .landing-page .features {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 0;
-  justify-items: center; /* Center items horizontally */
-  z-index: 2; /* Ensure features are above the overlay */
+  justify-items: center;
+  z-index: 2;
 }
 
 .landing-page .features .card {
-  width: 100%; /* Make sure each card takes full width of the column */
-  height: 100%; /* Ensures cards take full height of the grid */
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -107,36 +103,35 @@
 }
 
 .landing-page .card:hover {
-  transform: translateY(-10px); /* Card lift on hover */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .landing-page .card .icon {
   font-size: 3.5rem;
-  color: #3182ce; /* Icon color */
+  color: #3182ce;
   margin-bottom: 15px;
 }
 
 .landing-page .card h2 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #2b6cb0; /* Title color */
+  color: #2b6cb0;
   margin-bottom: 10px;
 }
 
 .landing-page .card .description {
   font-size: 1rem;
-  color: #4a5568; /* Description color */
+  color: #4a5568;
 }
 
-/* Hover Effect for Links */
 .landing-page .link-card {
-  text-decoration: none; /* Remove default underline */
+  text-decoration: none;
 }
 
 .landing-page .link-card:hover .card {
-  transform: translateY(-5px); /* Slight lift effect for clickable cards */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12); /* Subtle shadow effect */
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
 }
 
 /* Responsive Design */
@@ -150,7 +145,7 @@
   }
 
   .landing-page .features {
-    grid-template-columns: 1fr 1fr; /* 2 columns for medium screens */
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -164,6 +159,6 @@
   }
 
   .landing-page .features {
-    grid-template-columns: 1fr; /* 1 column for small screens */
+    grid-template-columns: 1fr;
   }
 }
